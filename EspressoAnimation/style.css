@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster|Comfortaa&display=swap');
+
+body {
+  background: grey;
+  padding: 20px;
+  height: 91vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.company-name {
+  font-family: 'Lobster', cursive;
+  fill: balck;
+}
+
+.top {
+  font-size: 46px;
+}
+
+.bottom {
+  font-size: 30px;
+}
+
+.company-tagline {
+  font-family: 'Comfortaa', cursive;
+  font-size: 17px;
+  fill: white;
+}

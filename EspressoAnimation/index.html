@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+</head>
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" width="600" height="300" viewBox="0 0 300 150">
+        <defs>
+          <linearGradient gradientUnits="userSpaceOnUse" y2="280.04" x2="20.19" y1="295.19" x1="20.28" id="fire" xlink:href="#a" gradientTransform="matrix(3.77953 0 0 3.77953 0 -972.52)"/>
+          <linearGradient id="a">
+            <stop offset="0" stop-color="#fc1c03" stop-opacity=".88"/>
+            <stop offset="1" stop-color="#fc6603" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="steam-grad">
+            <stop offset="0" stop-opacity="0"/>
+            <stop offset="0.8" stop-opacity="0.3"/>
+          </linearGradient>
+          <linearGradient id="cup-grad">
+            <stop offset="0" stop-color="#000" stop-opacity="0.5"/>
+            <stop offset="0.5" stop-color="#000" stop-opacity=".2"/>
+            <stop offset="1" stop-color="#000" stop-opacity="0.1"/>
+          </linearGradient>
+          
+          <linearGradient y2="271.39" x2="18.9" y1="258.34" x1="19" gradientTransform="matrix(3.77953 0 0 2.3183 -17.81 -574.36)" gradientUnits="userSpaceOnUse" id="cup-steam-fill" xlink:href="#cup-grad"/>
+          <linearGradient y2="270.33" x2="18.86" y1="257.85" x1="18.87" gradientUnits="userSpaceOnUse" id="b" xlink:href="#a"/>
+          <linearGradient y2="270" x2="19.06" y1="256.69" x1="18.61" gradientUnits="userSpaceOnUse" id="steam-fill" xlink:href="#steam-grad"/>
+        </defs>
+        <g id="background">
+          <rect height="150" width="300" fill="white"/>
+          <!-- <rect id="taglineBox" y="121.28" x="145.75" height="22.04" width="147.32" fill="#000000"/> -->
+        </g>
+        <!-- <g id="text-content">
+          <text class="company-name top" text-anchor="middle" y="54" x="218">Fueled</text>
+          <text class="company-name bottom" text-anchor="middle" x="218" y="78">By Coffee</text>
+          <text class="company-tagline" text-anchor="middle" y="137.5" x="218">espresso bar</text>
+        </g> -->
+        <!-- <g id="stars">
+          <path d="M192.56 93.48c.77-.02 3.3 6.17 3.94 6.62.64.45 7.44.85 7.7 1.6.26.72-4.85 5.04-5.08 5.78-.23.75 1.49 7.34.87 7.82-.62.47-6.3-3.05-7.08-3.04-.78 0-6.52 3.68-7.17 3.24-.63-.44.96-6.94.71-7.67-.25-.75-5.52-5.06-5.3-5.82.22-.74 6.9-1.24 7.51-1.7.63-.47 3.11-6.8 3.9-6.83z"/>
+          <path d="M219.3 93.48c.77-.02 3.3 6.17 3.93 6.62.65.45 7.44.85 7.7 1.6.26.72-4.84 5.04-5.07 5.78-.23.75 1.49 7.34.86 7.82-.6.47-6.3-3.05-7.07-3.04-.79 0-6.52 3.68-7.17 3.24-.64-.44.95-6.94.7-7.67-.25-.75-5.51-5.06-5.29-5.82.22-.74 6.9-1.24 7.51-1.7.63-.47 3.11-6.8 3.9-6.83z"/>
+          <path d="M246.04 93.48c.77-.02 3.3 6.17 3.93 6.62.64.45 7.44.85 7.7 1.6.26.72-4.85 5.04-5.07 5.78-.24.75 1.48 7.34.86 7.82-.61.47-6.3-3.05-7.07-3.04-.8 0-6.52 3.68-7.17 3.24-.64-.44.95-6.94.7-7.67-.25-.75-5.51-5.06-5.3-5.82.23-.74 6.9-1.24 7.52-1.7.63-.47 3.1-6.8 3.9-6.83z"/>
+          <path d="M192.62 99.76c.37-.02 1.57 2.92 1.87 3.13.3.22 3.53.4 3.65.76.12.34-2.3 2.4-2.4 2.74-.12.36.7 3.49.4 3.71-.29.23-2.99-1.44-3.35-1.44-.37 0-3.1 1.75-3.4 1.54-.3-.21.45-3.3.33-3.64-.12-.35-2.61-2.4-2.5-2.76.1-.35 3.26-.58 3.56-.8.3-.23 1.47-3.23 1.84-3.24z" fill="#fff"/>
+          <path d="M219.43 99.76c.36-.02 1.56 2.92 1.86 3.13.3.22 3.53.4 3.66.76.12.34-2.3 2.4-2.41 2.74-.11.36.7 3.49.4 3.71-.28.23-2.98-1.44-3.35-1.44-.37 0-3.09 1.75-3.4 1.54-.3-.21.46-3.3.34-3.64-.12-.35-2.62-2.4-2.51-2.76.1-.35 3.27-.58 3.56-.8.3-.23 1.47-3.23 1.85-3.24z" fill="#fff"/>
+          <path d="M246.23 99.76c.36-.02 1.57 2.92 1.87 3.13.3.22 3.52.4 3.65.76.12.34-2.3 2.4-2.41 2.74-.11.36.7 3.49.41 3.71-.29.23-2.99-1.44-3.35-1.44-.38 0-3.1 1.75-3.4 1.54-.3-.21.45-3.3.33-3.64-.12-.35-2.61-2.4-2.5-2.76.1-.35 3.26-.58 3.55-.8.3-.23 1.48-3.23 1.85-3.24z" fill="#fff"/>
+        </g> -->
+        <rect id="roasting-fire" opacity="0" y="85.53" x="6.76" height="57.79" width="138.84" fill="url(#fire)"/>
+        <g id="beans">
+          <g id="bean1" opacity="0">
+            <path class="bean-fill" d="M40.85 50.6c6.03 1.64 7.75 10.51 6.18 20.31-2.1 13.19-9.62 16-15.65 14.35-6.03-1.64-9-10.53-6.19-20.32 2.46-8.52 6.93-16.4 15.66-14.35z" fill="#3e583b"/>
+            <path class="bean-middle-line" d="M39.01 49.73c-1.97 12.45-8 22.46-8.12 34.95" fill="none" stroke="#263727" stroke-width="5"/>
+            <path class="bean-outline" d="M40.85 50.6c6.03 1.64 7.75 10.51 6.18 20.31-2.1 13.19-9.62 16-15.65 14.35-6.03-1.64-9-10.53-6.19-20.32 2.46-8.52 6.93-16.4 15.66-14.35z" fill="none" stroke="#121a1a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <g id="bean2" opacity="0">
+            <path class="bean-fill" d="M54.35 47.98c5.88-.69 10.5 6.68 12.56 16.07 2.77 12.62-2.85 17.85-8.72 18.54-5.88.68-11.6-6.25-12.56-16.07-.83-8.56.33-17.26 8.72-18.54z" fill="#3e583b"/>
+            <path class="bean-middle-line" d="M52.44 47.86c2.64 11.92-.44 23.1 6.87 34.22" fill="none" stroke="#263727" stroke-width="4.79"/>
+            <path class="bean-outline" d="M54.35 47.98c5.88-.69 10.5 6.68 12.56 16.07 2.77 12.62-2.85 17.85-8.72 18.54-5.88.68-11.6-6.25-12.56-16.07-.83-8.56.33-17.26 8.72-18.54z" fill="none" stroke="#121a1a" stroke-width="3.83" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <g id="bean3" opacity="0">
+            <path class="bean-fill" d="M80.57 59.56c6.12 1.26 8.41 10 7.47 19.88-1.26 13.3-8.58 16.59-14.7 15.33-6.13-1.26-9.67-9.94-7.48-19.88 1.9-8.67 5.87-16.82 14.71-15.33z" fill="#3e583b"/>
+            <path class="bean-middle-line" d="M78.68 58.82c.54 10-.18 27.98-5.87 35.4" fill="none" stroke="#263727" stroke-width="5"/>
+            <path class="bean-outline" d="M80.57 59.56c6.12 1.26 8.41 10 7.47 19.88-1.26 13.3-8.58 16.59-14.7 15.33-6.13-1.26-9.67-9.94-7.48-19.88 1.9-8.67 5.87-16.82 14.71-15.33z" fill="none" stroke="#121a1a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <g id="bean4" opacity="0">
+            <path class="bean-fill" d="M101.8 42.93c6.03 1.65 7.75 10.52 6.18 20.32-2.11 13.19-9.62 16-15.66 14.36-6.03-1.65-9-10.53-6.18-20.32 2.45-8.53 6.92-16.41 15.65-14.36z" fill="#3e583b"/>
+            <path class="bean-middle-line" d="M99.37 43.65c1.96 12.45-4.52 21.9-5.31 33.94" fill="none" stroke="#263727" stroke-width="5"/>
+            <path class="bean-outline" d="M101.8 42.93c6.03 1.65 7.75 10.52 6.18 20.32-2.11 13.19-9.62 16-15.66 14.36-6.03-1.65-9-10.53-6.18-20.32 2.45-8.53 6.92-16.41 15.65-14.36z" fill="none" stroke="#121a1a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <g id="bean5" opacity="0">
+            <path class="bean-fill" d="M119.34 49c6.04 1.64 7.76 10.51 6.19 20.31-2.11 13.19-9.62 16-15.66 14.36-6.03-1.65-9-10.53-6.18-20.32 2.45-8.52 6.92-16.4 15.65-14.35z" fill="#3e583b"/>
+            <path class="bean-middle-line" d="M117.5 48.13c-4.16 10.23-1.12 27.68-6.2 34.8" fill="none" stroke="#263727" stroke-width="5"/>
+            <path class="bean-outline" d="M119.34 49c6.04 1.64 7.76 10.51 6.19 20.31-2.11 13.19-9.62 16-15.66 14.36-6.03-1.65-9-10.53-6.18-20.32 2.45-8.52 6.92-16.4 15.65-14.35z" fill="none" stroke="#121a1a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+      </g>
+        <g id="bean-steam" opacity="0" fill="none" stroke-width=".8" stroke-linecap="round">
+          <path d="M9.18 270.33a6.78 6.78 0 0 1 .43-3.43c.2-.5.45-.97.58-1.49.07-.25.1-.52.08-.79-.03-.26-.11-.52-.26-.74a1.3 1.3 0 0 0-1.85-.27 1.3 1.3 0 0 0-.2 1.85 1.3 1.3 0 0 0 1.26.43" stroke="url(#steam-fill" transform="matrix(3.77953 0 0 3.77953 0 -972.52)"/>
+          <path d="M11.69 262.56a.96.96 0 0 1 .83-.66.96.96 0 0 1 .93.52c.12.25.14.55.07.82a2 2 0 0 1-.39.73c-.34.44-.8.78-1.11 1.24-.34.5-.48 1.14-.4 1.74.1.6.43 1.17.91 1.54" stroke="url(#steam-fill)" transform="matrix(3.77953 0 0 3.77953 0 -972.52)"/>
+          <path d="M15.53 269.92a3.63 3.63 0 0 1-1.71-2.4c-.2-1 .05-2.07.67-2.88.28-.37.63-.68.97-1 .34-.31.67-.65.9-1.05.23-.4.35-.9.23-1.34a1.27 1.27 0 0 0-.33-.6 1.05 1.05 0 0 0-.62-.3.97.97 0 0 0-.97.54.97.97 0 0 0 .19 1.1" stroke="url(#steam-fill)" transform="matrix(3.77953 0 0 3.77953 0 -972.52)"/>
+          <path d="M18.7 273.37c.87-.5 1.5-1.4 1.7-2.4.2-1-.05-2.07-.67-2.87-.28-.37-.63-.68-.97-1a4.66 4.66 0 0 1-.9-1.06c-.23-.4-.34-.89-.23-1.34.05-.22.17-.43.33-.6.17-.16.39-.27.62-.3a.97.97 0 0 1 .97.54.97.97 0 0 1-.18 1.1" stroke="url(#steam-fill)" transform="matrix(3.77953 0 0 3.77953 0 -972.52)"/>
+          <path d="M20.97 260.83c.21-.25.53-.4.85-.43a1.27 1.27 0 0 1 1.28.8c.08.2.12.4.12.62.01.42-.12.84-.32 1.2-.4.75-1.04 1.34-1.45 2.08a4.02 4.02 0 0 0 1.04 5.12" stroke="url(#steam-fill)" transform="matrix(3.77953 0 0 3.77953 0 -972.52)"/>
+          <path d="M31.49 270.37a2.7 2.7 0 0 0 1.21-1.74 2.7 2.7 0 0 0-.44-2.07c-.3-.44-.74-.77-1.09-1.18-.17-.2-.33-.43-.43-.67-.1-.25-.13-.53-.08-.8.06-.27.23-.53.47-.7.24-.15.55-.22.83-.17.28.06.55.22.71.45.17.24.25.54.2.82" stroke="url(#steam-fill)" transform="matrix(3.77953 0 0 3.77953 0 -972.52)"/>
+          <path d="M28.14 269.76a3.7 3.7 0 0 0 1.86-2.5 3.7 3.7 0 0 0-.78-3.03c-.46-.55-1.07-.96-1.53-1.52-.23-.27-.41-.6-.5-.94-.08-.35-.05-.73.13-1.05a1.2 1.2 0 0 1 1.24-.58 1.2 1.2 0 0 1 .97.98" stroke="url(#steam-fill)" transform="matrix(3.77953 0 0 3.77953 0 -972.52)"/>
+          <path d="M24.89 269.09a2.79 2.79 0 0 0 .7-3.17c-.3-.71-.9-1.27-1.21-1.98a1.85 1.85 0 0 1-.14-1.14c.04-.19.12-.37.25-.52.12-.15.3-.26.48-.32a.93.93 0 0 1 1.09.49.93.93 0 0 1-.3 1.15" stroke="url(#steam-fill)" transform="matrix(3.77953 0 0 3.77953 0 -972.52)"/>
+        </g>
+        <g id="grinder" opacity="0">
+          <rect y="73.76" x="31.88" height="46.79" width="85.23" fill="#795b3d"/>
+          <path d="M48.2 73.5a27.84 27.84 0 0 1 53.29-.03" fill="#868381" stroke="#000" stroke-width="4"/>
+          <path d="M25.47 73.49h97.77" fill="none" stroke="#000" stroke-width="4.32"/>
+          <path d="M21.12 119.85H128.7" fill="none" stroke="#000" stroke-width="6.35"/>
+          <path d="M31.88 73.76v46.52" fill="none" stroke="#000" stroke-width="4.32"/>
+          <path d="M117.1 73.2v47.36" fill="none" stroke="#000" stroke-width="4.32"/>
+          <path d="M42.46 82.96h64.9v27.85h-64.9z" fill="#8d6b47" stroke="#000" stroke-width="2"/>
+          <circle r="2.95" cy="96.61" cx="74.75" fill="#010101"/>
+          <path d="M79.7 52.46c0 1.63-3.32 2.95-4.95 2.95-1.63 0-4.95-1.32-4.95-2.95 0-1.64 3.32-2.96 4.95-2.96 1.63 0 4.96 1.32 4.96 2.96z" fill="#010101"/>
+          <g id="grinder-crank">
+            <path id="grinder-handle-rod" d="M75.6 54.32v-2.05a6.83 6.83 0 0 1 6.85-6.85h31.85c3.8 0 6.85-1.06 6.85-4.85V29.95" fill="none" stroke="#000" stroke-width="5"/>
+            <rect id="grinder-handle" ry="2.11" y="19.8" x="116.01" height="11.82" width="10.04" fill="#795b3d" stroke="#000" stroke-width="5"/>
+          </g>
+          <circle cx="37.13" cy="123.74" r="4.07" fill="#010101"/>
+          <circle r="4.07" cy="123.74" cx="112.58" fill="#010101"/>
+        </g>
+        <g id="maker" opacity="0">
+          <rect ry=".94" y="42.11" x="33.65" height="77.62" width="81.73" fill="#d4d5d7" stroke="#040404" stroke-width="3.04" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect width="91.98" height="13.92" x="28.32" y="114.77" ry=".94" fill="#aabcc6" stroke="#030303" stroke-width="2.76" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M114.48 50.39h-80" fill="none" stroke="#040404" stroke-width="3.04"/>
+          <path d="M58.97 46.4v12.55h30.58V46.6" fill="#c4c4c4" stroke="#040404" stroke-width="3.04"/>
+          <rect ry=".94" y="22.45" x="28.32" height="24.32" width="91.98" fill="#aabcc6" stroke="#030303" stroke-width="2.76" stroke-linecap="round" stroke-linejoin="round"/>
+          <g id="streams" opacity="0">
+            <path d="M69.04 93.08V74.3" fill="none" stroke="#2f1a05" stroke-width="3"/>
+            <path d="M79.33 93.08V74.3" fill="none" stroke="#2f1a05" stroke-width="3"/>
+          </g>
+          <path d="M86.37 59.54v12.18c0 2.23-1.8 4.03-4.02 4.03l-1.3 3.18h-3.4l-1.32-3.18h-4.32l-1.14 3.18h-3.82s-.4-3.18-1.67-3.18a4.02 4.02 0 0 1-4.03-4.03V59.54" fill="#929292" stroke="#040404" stroke-width="3.04" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect ry=".94" y="62.5" x="89.94" height="7.87" width="32.14" fill="#aabcc6" stroke="#040404" stroke-width="3.04" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M91.22 66.4h-5.2" fill="none" stroke="#040404" stroke-width="3.04"/>
+          <circle r="6.48" cy="34.51" cx="102.79" fill="#cabfae" stroke="#040404" stroke-width="3.04" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect ry=".04" y="29.4" x="67.37" height="9.57" width="4.55" fill="#729d46" stroke="#040404" stroke-width="2.48" stroke-linecap="round"/>
+          <rect width="4.55" height="9.57" x="76.34" y="29.4" ry=".04" fill="#9d4646" stroke="#040404" stroke-width="2.48" stroke-linecap="round"/>
+        </g>
+        <g id="cup-steam-lines" opacity="0" transform="translate(-5 0)">
+          <path d="M90.38 28.03a5.27 5.27 0 0 0-4.9 2.02 6.26 6.26 0 0 0-1.17 2.98c-.14 1.07-.05 2.16.16 3.22.4 2.12 1.29 4.11 1.82 6.2 1.03 4.05.7 8.43-.94 12.27" fill="none" stroke="url(#cup-steam-fill)" stroke-width="5" stroke-linecap="round"/>
+          <path d="M79.97 24.64a7.7 7.7 0 0 0-5.11 1.88 7.7 7.7 0 0 0-2.55 4.82c-.3 2.48.63 4.93 1.72 7.18 1.08 2.25 2.36 4.45 2.85 6.9A11.28 11.28 0 0 1 73.3 56" fill="none" stroke="url(#cup-steam-fill)" stroke-width="5" stroke-linecap="round"/>
+          <path d="M64.72 27.4a6.35 6.35 0 0 0-4.66 4.86 7.94 7.94 0 0 0 .25 3.82 16 16 0 0 0 1.6 3.51c1.3 2.23 2.9 4.35 3.6 6.83.9 3.23.09 6.88-2.08 9.43" fill="none" stroke="url(#cup-steam-fill)" stroke-width="5" stroke-linecap="round"/>
+        </g>
+        <g id="cup" opacity="0">
+          <path d="M88.9 92.31c2.55 1.06 2.93-1.27 6.54-.35 3.62.92 4.9 10.74.5 13.03-4.38 2.3-6.53 2.26-7.42 4.62l1.53-6.23s3.54-.52 4.74-2.03c1.2-1.5 1.22-5.2-.45-6.18-1.38-.8-3.58 1.1-4.32 2.66z" fill="#fff" stroke="#000" stroke-width="1.5"/>
+          <path d="M83.85 111.22H64.13a5.3 5.3 0 0 1-5.3-5.3V91.73h30.33v14.2a5.3 5.3 0 0 1-5.3 5.3z" fill="#fff" stroke="#040404" stroke-width="3.04" stroke-linecap="round" stroke-linejoin="round"/>
+          <g id="cup-star" opacity="0">
+            <path d="M73.76 96.31c.34 0 1.47 2.74 1.74 2.93.29.2 3.3.38 3.41.7.12.33-2.14 2.24-2.24 2.57-.1.33.66 3.25.38 3.46-.27.2-2.8-1.35-3.13-1.35-.35 0-2.89 1.64-3.18 1.44-.28-.2.43-3.07.32-3.4-.11-.33-2.44-2.24-2.35-2.57.1-.33 3.06-.55 3.33-.75.28-.21 1.37-3.02 1.72-3.03z" fill="#003f87"/>
+          </g>
+        </g>
+        <g id="frame">
+          <path transform="translate(-9 -11)" d="M7.77 6.16h305.65v157.2H7.79L0 0h16.75l-.12 154.13 286.17.04V17.8H7.06z" fill="white"/>
+          <rect height="150" width="300" fill="none"/>
+          <!-- <rect width="295.56" height="145.94" x="2.22" y="2.03" ry="0" fill="none" stroke="#000000" stroke-width="3"/> -->
+          <rect y="6.68" x="6.76" height="136.64" width="286.31" fill="none" stroke="#000000" stroke-width="1.5"/>
+          <path id="divider" d="M145.45 7.37v135.61" fill="none" stroke="#000" stroke-width="1.5"/>
+        </g>
+      </svg>
+
+      <script src="code.js"></script>
+</body>
+</html>
