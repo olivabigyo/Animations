@@ -5,25 +5,19 @@ body {
   padding: 20px;
   height: 91vh;
   display: flex;
+  /* justify-content: center;
+  align-items: center; */
+}
+
+.logo {
+  position: absolute;
+  left: 100px;
+}
+.logo-wrap {
+  width: 300px;
+  height: 300px;
+  display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.company-name {
-  font-family: 'Lobster', cursive;
-  fill: balck;
-}
-
-.top {
-  font-size: 46px;
-}
-
-.bottom {
-  font-size: 30px;
-}
-
-.company-tagline {
-  font-family: 'Comfortaa', cursive;
-  font-size: 17px;
-  fill: white;
+  background-color: white;
 }
