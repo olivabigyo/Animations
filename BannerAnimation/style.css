@@ -94,10 +94,14 @@
 }
 
 #logo {
-    width: 300px;
+    width: 70px;
     position: absolute;
     text-align: center;
-    bottom: 17px;
+    bottom: 10px;
+    left: 220px;
+}
+#logo img {
+    width: 100%;
 }
 
 #last-screen .cta-button {
