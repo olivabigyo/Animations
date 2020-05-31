@@ -158,4 +158,4 @@ window.addEventListener('mousemove', handleMouseMove);
 window.addEventListener('resize', handleResize);
 box.addEventListener('mousedown', grab);
 window.addEventListener('mouseup', release);
-box.addEventListener('click', click);
+// box.addEventListener('click', click);
