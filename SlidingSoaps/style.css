@@ -24,6 +24,7 @@
     width: 100px;
     height: 50px;
     border-radius: 3px;
+    border: 1px solid white;
     background-color: indianred;
 }
 #br1 {
@@ -45,4 +46,12 @@
   width: 200px;
   height: 100px;
   background-color: blueviolet;
+}
+#br5 {
+  left: 300px;
+  top: 20px;
+}
+#br6 {
+  left: 250px;
+  top: 200px;
 }

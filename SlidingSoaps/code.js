@@ -5,6 +5,9 @@ class V2 {
     this.x = x;
     this.y = y;
   }
+  static fromEvent(event) {
+    return new V2(event.clientX, event.clientY);
+  }
   clone() {
     return new V2(this.x, this.y);
   }
@@ -40,6 +43,10 @@ class V2 {
   divM(s) { this.x /= s; this.y /= s; return this; }
   div(s) { return this.clone().divM(s); }
 
+  absM() { this.x = Math.abs(this.x); this.y = Math.abs(this.y); return this; }
+  abs() { return this.clone().absM(); }
+
+  under(that) { return this.x <= that.x && this.y <= that.y; }
 
 }
 
@@ -64,6 +71,36 @@ class Rect {
     // a sarkahoz adjuk a dimenziovektort: kozepe
     this.C = new V2(br.x, br.y).addM(this.R);
   }
+  // brick maradjon a playgroundon belul
+  forceInside(that) {
+    // this a brick, that a playground
+    const centersOff = this.C.sub(that.C);
+    const dimsDiff = that.R.sub(this.R);
+    if (centersOff.x > dimsDiff.x) { this.C.x = that.C.x + that.R.x - this.R.x; }
+    if (centersOff.x < -dimsDiff.x) { this.C.x = that.C.x - that.R.x + this.R.x; }
+    if (centersOff.y > dimsDiff.y) { this.C.y = that.C.y + that.R.y - this.R.y; }
+    if (centersOff.y < -dimsDiff.y) { this.C.y = that.C.y - that.R.y + this.R.y; }
+  }
+
+  // brick ne masszon ra masokra
+  forceOutside(that) {
+    const centersOff = that.C.sub(this.C);
+    const dimSum = that.R.add(this.R);
+    const centersOffAbs = centersOff.abs();
+    // ha nem log bele
+    if (!centersOff.abs().under(dimSum)) return;
+    // belogas merteke
+    const distToBoundary = dimSum.sub(centersOffAbs);
+    if (distToBoundary.x < distToBoundary.y) {
+      // adjust x
+      if (centersOff.x > 0) { this.C.x = that.C.x - that.R.x - this.R.x; }
+      else { this.C.x = that.C.x + that.R.x + this.R.x }
+    } else {
+      // adjust y
+      if (centersOff.y > 0) { this.C.y = that.C.y - that.R.y - this.R.y; }
+      else { this.C.y = that.C.y + that.R.y + this.R.y }
+    }
+  }
 }
 
 class Brick extends Rect {
@@ -71,22 +108,54 @@ class Brick extends Rect {
     // super(arg) : a szulo osztaly ezekkel argumentummal hivodjon meg amikor kiterjesztjuk Brick-e
     super(element);
     this.origCenter = this.C.clone();
-    this.brick = element;
+    this.element = element;
   }
 
-  // a brick legyen elmozdithato v vektorral
-  moveBy(v) {
+  moveTo(v) {
     // update center
-    this.C.addM(v);
+    this.C = v;
+    // don't overlap
+    for (const brick of bricks) {
+      if (brick != this) this.forceOutside(brick);
+    }
+    // don't overflow
+    this.forceInside(playground);
     // update offset az eredetitol
     const offset = this.C.sub(this.origCenter);
     // translete mindig az eredeti helyhez kepest szamolodik
-    this.brick.style.transform = `translate(${offset.x}px,${offset.y}px)`;
+    this.element.style.transform = `translate(${offset.x}px,${offset.y}px)`;
+  }
+
+  dragStart(ev) {
+    this.grabDiff = V2.fromEvent(ev).subM(this.C);
+  }
+  drag(ev) {
+    this.moveTo(V2.fromEvent(ev).subM(this.grabDiff));
+  }
+  dragEnd() {
+    this.grabDiff = undefined;
   }
 }
 
 // document.querySelectorAll returns a NodeList, and it doesn't have a 'map' method.
 // That's why we need Array.from
 const bricks = Array.from(document.querySelectorAll(".brick")).map(element => new Brick(element));
-console.log(bricks);
-bricks[0].moveBy(new V2(50,100));
+const playground = new Rect(".playground");
+
+let grabbedBrick;
+bricks.forEach(brick => {
+  brick.element.addEventListener("mousedown", event => {
+    event.preventDefault();
+    grabbedBrick = brick;
+    brick.dragStart(event);
+  });
+});
+window.addEventListener("mousemove", event => {
+  if (!grabbedBrick) return;
+  grabbedBrick.drag(event);
+});
+window.addEventListener("mouseup", event => {
+  if (!grabbedBrick) return;
+  grabbedBrick.dragEnd();
+  grabbedBrick = undefined;
+});
