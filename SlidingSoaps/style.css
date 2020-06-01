@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+.wrapper {
+    width: 100%;
+    height: 100vh;
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.playground {
+    position: relative;
+    width: 90%;
+    height: 90%;
+    background-color: honeydew;
+}
+.brick {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    border-radius: 3px;
+    background-color: indianred;
+}
+#br1 {
+  left: 0px;
+  top: 0px;
+}
+#br2 {
+  left: 200px;
+  top: 200px;
+  width: 50px;
+}
+#br3 {
+  right: 0px;
+  top: 0px;
+}
+#br4 {
+  left: 500px;
+  top: 300px;
+  width: 200px;
+  height: 100px;
+  background-color: blueviolet;
+}
