@@ -109,6 +109,8 @@ class Brick extends Rect {
     super(element);
     this.origCenter = this.C.clone();
     this.element = element;
+    this.V = new V2(0,0);
+    this.grabbed = false;
   }
 
   moveTo(v) {
@@ -128,12 +130,29 @@ class Brick extends Rect {
 
   dragStart(ev) {
     this.grabDiff = V2.fromEvent(ev).subM(this.C);
+    this.grabbed = true;
+    this.prevPos = this.C.clone();
   }
   drag(ev) {
     this.moveTo(V2.fromEvent(ev).subM(this.grabDiff));
   }
   dragEnd() {
     this.grabDiff = undefined;
+    this.grabbed = false;
+  }
+
+  update() {
+    if (this.grabbed) {
+      // elmozdulas per tick
+      const deltaV = this.C.sub(this.prevPos);
+      // vNew = vOld + 0.1 * (deltaV - vOld)  exponencialis atlag
+      this.V.addM(deltaV.subM(this.V).mulM(0.1));
+      this.prevPos = this.C.clone();
+    } else {
+      // elengedve V sebesseggel megy tovabb
+      this.C.addM(this.V);
+      this.moveTo(this.C);
+    }
   }
 }
 
@@ -159,3 +178,12 @@ window.addEventListener("mouseup", event => {
   grabbedBrick.dragEnd();
   grabbedBrick = undefined;
 });
+
+function animate() {
+  for (const brick of bricks) {
+    brick.update();
+  }
+  // masodpercenkent 60-szor updatel
+  requestAnimationFrame(animate);
+}
+animate();
