@@ -22,6 +22,38 @@
     position: relative;
 }
 
+#logo {
+    width: 70px;
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    overflow: hidden;
+}
+#logo img {
+    width: 100%;
+}
+
+#logo .shadow {
+    content: '';
+    width: 250%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, #802121, #802121);
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#logo .shine {
+    content: '';
+    width: 100%;
+    height: 95%;
+    background: linear-gradient(to right, transparent, #fff, transparent);
+    position: absolute;
+    top: 0;
+    left: -80px;
+    transform: skewX(-25deg);
+}
+
 #top-section {
     position: absolute;
     width: 300px;
@@ -91,17 +123,6 @@
 .text {
     user-select: none;
     cursor: default;
-}
-
-#logo {
-    width: 70px;
-    position: absolute;
-    text-align: center;
-    bottom: 10px;
-    left: 220px;
-}
-#logo img {
-    width: 100%;
 }
 
 #last-screen .cta-button {
