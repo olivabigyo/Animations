@@ -1,4 +1,4 @@
-var timeline = new TimelineMax();
+const timeline = gsap.timeline();
 
 timeline.set('#bean1', { opacity: 1 });
 timeline.from('#bean1', 1.2, { y: '-=90', ease: Bounce.easeOut });
@@ -37,20 +37,18 @@ timeline.to('#grinder', 0.7, { y:'+=160', ease: Back.easeIn }, '+=0.3');
 timeline.set('#maker', { opacity:1 });
 timeline.from('#maker', 1.3, { y:'-=160', ease:Elastic.easeOut }, "+=0.5");
 
-timeline.set('#cup', { opacity:1 });
-timeline.from('#cup', 0.7, { x:'-=160' }, "+=0.1");
+// timeline.set('#cup', { opacity:1 });
+// timeline.from('#cup', 0.7, { x:'-=160' }, "+=0.1");
 
-timeline.set('#streams', { opacity:1, scaleY:0.1 });
-timeline.to('#streams', 0.3, { scaleY:1 });
-timeline.to('#streams', 0.3, { scaleY:0.1, transformOrigin:"50% 100%" }, '+=1.2');
-timeline.set('#streams', { opacity:0 });
+// timeline.set('#streams', { opacity:1, scaleY:0.1 });
+// timeline.to('#streams', 0.3, { scaleY:1 });
+// timeline.to('#streams', 0.3, { scaleY:0.1, transformOrigin:"50% 100%" }, '+=1.2');
+// timeline.set('#streams', { opacity:0 });
 
-timeline.to('#maker', 0.7, { x:'-=130' }, "+=0.5");
+// timeline.to('#maker', 0.7, { x:'-=130' }, "+=0.5");
 
-timeline.to('#cup', 0.7, { y:'-=20', scale: '2', transformOrigin: "50% 50%" }, "+=0.1");
-timeline.to('#cup-star', 1, { opacity:1 });
-timeline.to('#cup-steam-lines', 2, { opacity:1 }, '+=0.1');
+// timeline.to('#cup', 0.7, { y:'-=20', scale: '2', transformOrigin: "50% 50%" }, "+=0.1");
+// timeline.to('#cup-star', 1, { opacity:1 });
+// timeline.to('#cup-steam-lines', 2, { opacity:1 }, '+=0.1');
 
 timeline.duration(12);
-
-// GSDevTools.create();
